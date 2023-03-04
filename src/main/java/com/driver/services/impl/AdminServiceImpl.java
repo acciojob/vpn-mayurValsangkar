@@ -88,12 +88,12 @@ public class AdminServiceImpl implements AdminService {
         Country country = new Country();
         country.setCountryName(countryName1);
         country.setCode(code);
-        country.setUser(null);
+        //country.setUser(null);
 
         serviceProvider.getCountryList().add(country);
 
         serviceProviderRepository1.save(serviceProvider);
-        countryRepository1.save(country);
+        //countryRepository1.save(country);
         return serviceProvider;
     }
 }
