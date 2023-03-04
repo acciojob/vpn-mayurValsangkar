@@ -33,11 +33,11 @@ public class ConnectionServiceImpl implements ConnectionService {
         //  If multiple service providers allow you to connect to the country, use the service provider having smallest id.
 
         User user = userRepository2.findById(userId).get();
-        if(user.isConnected()){
+        if(user.getConnected()==true){
             throw new Exception("Already connected");
         }
 
-        String userCountry = user.getCountry().toString();
+        String userCountry = user.getOriginalCountry().toString();
         if(userCountry.equals(countryName)){
             return user;
         }
@@ -90,7 +90,7 @@ public class ConnectionServiceImpl implements ConnectionService {
         //update relevant attributes and return updated user.
 
         User user = new User();
-        if(!user.isConnected()){
+        if(!user.getConnected()==true){
             throw new Exception("Already disconnected");
         }
 
@@ -120,11 +120,11 @@ public class ConnectionServiceImpl implements ConnectionService {
 
         User receiver = userRepository2.findById(receiverId).get();
 
-        CountryName senderCountry = sender.getCountry().getCountryName();
+        CountryName senderCountry = sender.getOriginalCountry().getCountryName();
 
         CountryName receiverCountry = null;
 
-        if(receiver.isConnected()){
+        if(receiver.getConnected()==true){
 
             String maskedIp =  receiver.getMaskedIp();
             String code = maskedIp.substring(0, 4);
@@ -136,7 +136,7 @@ public class ConnectionServiceImpl implements ConnectionService {
             }
         }else{
 
-            receiverCountry = receiver.getCountry().getCountryName();
+            receiverCountry = receiver.getOriginalCountry().getCountryName();
         }
 
         if(!senderCountry.equals(receiverCountry)){

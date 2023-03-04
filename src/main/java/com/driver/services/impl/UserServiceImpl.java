@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
         country.setCountryName(countryName1);
         country.setCode(countryName1.toCode());
 
-        user.setCountry(country);
+        user.setOriginalCountry(country);
         userRepository3.save(user);
         countryRepository3.save(country);
 
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         ServiceProvider serviceProvider = serviceProviderRepository3.findById(serviceProviderId).get();
 
         user.getServiceProviderList().add(serviceProvider);
-        serviceProvider.getCountryList().add(user.getCountry());
+        serviceProvider.getCountryList().add(user.getOriginalCountry());
         serviceProviderRepository3.save(serviceProvider);
 
         return user;
