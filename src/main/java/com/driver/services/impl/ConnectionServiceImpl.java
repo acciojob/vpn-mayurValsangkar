@@ -130,7 +130,7 @@ public class ConnectionServiceImpl implements ConnectionService {
             String code = maskedIp.substring(0, 4);
 
             for (CountryName country : CountryName.values()) {
-                if (country.toCode().equals(code)) {
+                if (country.toCode().equalsIgnoreCase(code)) {
                     receiverCountry = country;
                 }
             }
@@ -138,6 +138,8 @@ public class ConnectionServiceImpl implements ConnectionService {
 
             receiverCountry = receiver.getOriginalCountry().getCountryName();
         }
+
+
 
         if(!senderCountry.equals(receiverCountry)){
 
