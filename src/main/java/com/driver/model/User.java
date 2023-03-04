@@ -20,7 +20,7 @@ public class User {
 
     private String maskedIp;
 
-    private boolean connected;
+    private Boolean connected;
 
     @ManyToMany
     @JoinTable(
@@ -78,7 +78,7 @@ public class User {
         this.maskedIp = maskedIp;
     }
 
-    public boolean getConnected() {
+    public Boolean getConnected() {
         return connected;
     }
 
